@@ -7,9 +7,9 @@ import { removeUser, setUser } from '../login/store/actions';
 function Home() {
 
     const userStore = useSelector(store => store.userStore);
+    console.log("USER STORE FROM HOME ", userStore);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    console.log(userStore);
 
     useEffect(() => {
         if(AuthService.getUserData() === null){
