@@ -10,12 +10,17 @@ class AuthService {
     }
 
     static loadingUsers(users) {
-        return axios.post('/', users);
+        return axios.get('/users', users);
     }
 
     static logout(navigate) {
         localStorage.removeItem('app_user_data');
-        navigate('/')
+        navigate('/homepage')
+    }
+
+    static delete(navigate, id) {
+        axios.delete('/user', {data: { userId: id}})
+        navigate('/homepage')
     }
 
     static storeUserData(user_data) {

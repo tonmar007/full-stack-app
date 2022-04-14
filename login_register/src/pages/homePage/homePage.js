@@ -16,19 +16,17 @@ function HomePage() {
     AuthService.loadingUsers(state)
       .then(res => {
         setState(res)
-        // console.log("RESPONSE FROM HOME PAGE ", res);
         dispatch(allUsers(res.data))
-        navigate('/');
+        navigate('/homepage');
       })
       .catch(err => {
-        setErr("Incorect username or pass ")
+        setErr("Incorect username or pass ");
+        console.log(err);
       })
-    console.log("Use Effect from HOME PAGE");
   }, [])
 
   return (
     <div className="container">
-      <h1>Welcome to Home Page</h1>
       <UsersList />
     </div>
   )

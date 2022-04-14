@@ -1,4 +1,4 @@
-import { STORE_USER, REMOVE_USER, HOME_PAGE } from './types';
+import { STORE_USER, REMOVE_USER, HOME_PAGE, DELETE_USER } from './types';
 
 export const setUser = (user) => {
     return {
@@ -19,5 +19,12 @@ export const allUsers = (users) => {
         payload: {
             users: users
         }
+    }
+}
+
+export const deleteUser = (id) => {
+    return {
+        type: DELETE_USER,
+        payload: id
     }
 }

@@ -2,12 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import AuthService from "../../services/authService";
-import { removeUser, setUser } from '../login/store/actions';
+import { removeUser, setUser, deleteUser } from '../login/store/actions';
 
 function Home() {
 
     const userStore = useSelector(store => store.userStore);
-    console.log("USER STORE FROM HOME ", userStore);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -25,11 +24,18 @@ function Home() {
         dispatch(removeUser());
     }
 
+    const deleteUser = () => {
+        AuthService.delete(navigate, userStore._id);
+        console.log(userStore);
+        dispatch(deleteUser(userStore._id));
+    }
+
     return (
         <div className="container">
             <h1>Home Page</h1>
             <h2>Hello {userStore.name}</h2>
             <button className="btn btn-warning" onClick={onLogout} >Logout</button>
+            <button onClick={deleteUser} className="btn btn-danger float-md-end">Delete</button>
         </div>
     )
 }

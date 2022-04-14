@@ -1,21 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import User from './User';
 import { useSelector } from 'react-redux';
 
 function UsersList() {
 
-    //const [users, setUsers] = useState({});
-    const homePageStore = useSelector(store => store.homePageStore);
-    console.log("HOME PAGE STORE FROM USER LIST ", homePageStore);
-    // useEffect(() => {
-    //     const allUsers = homePageStore.users?.map(user => {
-    //         return (
-    //             <User user={user} key={user._id} />
-    //         )
-    //     })
-    // }, []);
+    const usersStore = useSelector(store => store.userStore);
 
-    return homePageStore.users ?
+    return usersStore.users ?
         <div className="container">
             <div className="row">
                 <div className="col-10 offset-1">
@@ -31,7 +22,7 @@ function UsersList() {
                                 </thead>
                                 <tbody>
                                     {
-                                        homePageStore.users.map(user => <User user={user} key={user._id} />)
+                                        usersStore.users.map(user => <User user={user} key={user._id} />)
                                     }
                                 </tbody>
                             </table>

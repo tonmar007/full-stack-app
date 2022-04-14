@@ -35,7 +35,6 @@ app.post('/register', (req, res) => {
 
 app.post('/login', (req, res) => {
     UserModel.findOne({name: req.body.username, pass: req.body.password}, (err, data) => {
-        console.log("DATA FROM SERVER RESPONSE ", data);
         if(data === null){
             return res.status(404).send("User not found")
         }
@@ -47,12 +46,22 @@ app.post('/login', (req, res) => {
     })
 })
 
-app.post('/', (req, res) => {
+app.get('/users', (req, res) => {
     UserModel.find({}, (err, users) => {
         if(err){
             return res.status(500).send(err)
         }else {
             return res.status(200).send(users)
+        }
+    })
+})
+
+app.delete('/user', (req, res) => {
+    UserModel.deleteOne({_id: req.body.userId}, (err, user) => {
+        if(err){
+            return res.status(500).send(err)
+        }else {
+            return res.status(200).send("Successfully deleted user")
         }
     })
 })
