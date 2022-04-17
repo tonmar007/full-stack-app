@@ -14,10 +14,6 @@ mongoose.connect( mongoUrl
 
 app.use(express.json());
 
-app.get('/data', (req, res) => {
-    res.send('Works fine!!!');
-})
-
 app.post('/register', (req, res) => {
     var userModel = new UserModel();
     userModel.name = req.body.name;

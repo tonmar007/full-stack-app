@@ -15,12 +15,12 @@ class AuthService {
 
     static logout(navigate) {
         localStorage.removeItem('app_user_data');
-        navigate('/homepage')
+        navigate('/')
     }
 
     static delete(navigate, id) {
         axios.delete('/user', {data: { userId: id}})
-        navigate('/homepage')
+        navigate('/')
     }
 
     static storeUserData(user_data) {

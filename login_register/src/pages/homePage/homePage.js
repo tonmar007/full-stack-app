@@ -17,11 +17,10 @@ function HomePage() {
       .then(res => {
         setState(res)
         dispatch(allUsers(res.data))
-        navigate('/homepage');
+        navigate('/');
       })
       .catch(err => {
-        setErr("Incorect username or pass ");
-        console.log(err);
+        setErr("Incorrect username or pass ");
       })
   }, [])
 

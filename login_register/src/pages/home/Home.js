@@ -26,7 +26,6 @@ function Home() {
 
     const deleteUser = () => {
         AuthService.delete(navigate, userStore._id);
-        console.log(userStore);
         dispatch(deleteUser(userStore._id));
     }
 
