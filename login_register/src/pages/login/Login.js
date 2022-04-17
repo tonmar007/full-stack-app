@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import AuthService from '../../services/authService';
 import { useDispatch } from 'react-redux';
 import { setUser } from './store/actions';
@@ -11,7 +10,6 @@ function Login() {
     const [err, setErr] = useState(undefined);
 
     const dispatch = useDispatch();
-
     const navigate = useNavigate();
 
     const onLogin = () => {

@@ -9,8 +9,17 @@ class AuthService {
         return axios.post('/login', body);
     }
 
+    static loadingUsers(users) {
+        return axios.get('/users', users);
+    }
+
     static logout(navigate) {
         localStorage.removeItem('app_user_data');
+        navigate('/')
+    }
+
+    static delete(navigate, id) {
+        axios.delete('/user', {data: { userId: id}})
         navigate('/')
     }
 
