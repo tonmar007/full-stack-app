@@ -9,8 +9,8 @@ export const userReducer = (state = {}, action) => {
         case REMOVE_USER:
             return {};
         case DELETE_USER:
-            const filteredUsers = state.filter(user => user._id !== action.payload.id)
-            //return { ...state, state: filteredUsers };
+            const filteredUsers = Object.values(state.users).filter(user => user._id !== action.payload.id)
+            return {  ...state, users: filteredUsers };
         default: return state;
     }
 }

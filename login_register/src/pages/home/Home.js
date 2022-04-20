@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import AuthService from "../../services/authService";
-import { removeUser, setUser, deleteUser } from '../login/store/actions';
+import { removeUser, setUser, deleteUserFromStore } from '../login/store/actions';
 
 function Home() {
 
@@ -25,14 +25,14 @@ function Home() {
     }
 
     const deleteUser = () => {
-        AuthService.delete(navigate, userStore._id);
-        dispatch(deleteUser(userStore._id));
+        AuthService.delete(navigate, userStore.currentUser._id);
+        dispatch(deleteUserFromStore(userStore.currentUser._id));
     }
 
     return (
         <div className="container">
             <h1>Home Page</h1>
-            <h2>Hello {userStore.name}</h2>
+            <h2>Hello {userStore.currentUser.name}</h2>
             <button className="btn btn-warning" onClick={onLogout} >Logout</button>
             <button onClick={deleteUser} className="btn btn-danger float-md-end">Delete</button>
         </div>

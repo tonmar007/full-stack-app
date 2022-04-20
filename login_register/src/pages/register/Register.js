@@ -13,7 +13,7 @@ function Register() {
         AuthService.register(state)
         .then(res => {
             if(res.status === 200){
-                navigate('/login');
+                navigate('/');
             }
         })
     }

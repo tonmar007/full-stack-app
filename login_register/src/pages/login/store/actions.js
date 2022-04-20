@@ -3,7 +3,10 @@ import { STORE_USER, REMOVE_USER, HOME_PAGE, DELETE_USER } from './types';
 export const setUser = (user) => {
     return {
         type: STORE_USER,
-        payload: user
+        payload:
+        {
+            currentUser: user
+        }
     }
 }
 
@@ -22,7 +25,7 @@ export const allUsers = (users) => {
     }
 }
 
-export const deleteUser = (id) => {
+export const deleteUserFromStore = (id) => {
     return {
         type: DELETE_USER,
         payload: id
