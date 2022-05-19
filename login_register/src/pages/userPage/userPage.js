@@ -4,16 +4,17 @@ import { useNavigate } from 'react-router-dom';
 import AuthService from "../../services/authService";
 import { removeUser, setUser, deleteUserFromStore } from '../../store/actions';
 
-function Home() {
+function UserPage() {
 
     const userStore = useSelector(store => store.userStore);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
+    const [err, setErr] = useState(undefined);
 
     useEffect(() => {
         if (AuthService.getUserData() === null) {
-            navigate('/');
+            setErr("We couldn't load user information, please try again.")
         }
         if (userStore) {
             dispatch(setUser(AuthService.getUserData()))
@@ -38,16 +39,18 @@ function Home() {
         <div className="container">
             <h1>Home Page</h1>
             <h2>Hello {userStore?.currentUser?.name}</h2>
-            { isLoading && <div className="spinner-border text-danger float-end" role="status">
-                <span className="visually-hidden">Loading...</span>
-            </div> }
+            { isLoading && <div className="spinner-border text-danger float-end" role="status"/>}
             <button className="btn btn-warning" onClick={onLogout} >Logout</button>
-            { isLoading && <div className="spinner-border text-danger float-end" role="status">
-                <span className="visually-hidden">Loading...</span>
-            </div> }
+            { isLoading && <div className="spinner-border text-danger float-end" role="status" />}
             <button onClick={deleteUser} className="btn btn-danger float-md-end">Delete</button>
+            {err && <div className="alert alert-warning d-flex align-items-center" role="alert">
+                    <img src="warning.svg" alt="Warning" />
+                    <div>
+                        {err}
+                    </div>
+                </div>}
         </div>
     )
 }
 
-export default Home;
+export default UserPage;

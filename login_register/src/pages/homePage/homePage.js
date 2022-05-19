@@ -29,11 +29,11 @@ function HomePage() {
 
   return (
     <div className="container">
-      {isLoading? <div className="spinner-border text-primary" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </div> : 
+      {isLoading? 
+        <div className="spinner-border text-primary" role="status">
+        </div> : 
         <UsersList />
-    }
+      }
     </div>
   )
 }
