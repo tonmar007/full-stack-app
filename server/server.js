@@ -21,9 +21,9 @@ app.post('/register', (req, res) => {
 
     userModel.save((err, data) => {
         if(err) {
-            console.error(err);
+            return res.status(500).send(err);
         }else {
-            res.status(200).send(data);
+            return res.status(200).send(data);
         }
     })
 
@@ -35,7 +35,7 @@ app.post('/login', (req, res) => {
             return res.status(404).send("User not found")
         }
         if(err){
-            return res.status(500).send(err)
+            return res.status(500).send(err);
         }else {
             return res.status(200).send(data)
         }
